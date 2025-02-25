@@ -19,14 +19,18 @@ btn.addEventListener("click" , function () {
 });
 
 function renderHTML(data){
-      console.log(data);
       
       let htmlString = "";
 
-      for(i=0; i<data.length; i++ ){
-        htmlString =`<p>${data[i].name} is a ${data[i].species}</p>`
-        animalContainer.insertAdjacentHTML('beforeend' , htmlString);
-      }
+      for (let i = 0; i < data.length; i++) {
+        let likes = data[i].foods.likes.map(food => food.toUpperCase()).join(", "); // Join likes with ", "
+        let dislikes = data[i].foods.dislikes.map(food => food.toUpperCase()).join(", "); // Join dislikes with ", "
+        htmlString = `
+            <p>${data[i].name} is a ${data[i].species} that likes to eat ${likes} and dislikes to eat ${dislikes}.</p>
+        `;
+    
+        animalContainer.insertAdjacentHTML('beforeend', htmlString);
+}
        
       
 }
